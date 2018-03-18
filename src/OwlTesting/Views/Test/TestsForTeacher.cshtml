@@ -1,0 +1,49 @@
+﻿@using Common.Resources
+@using Model.DTO
+@model IEnumerable<TestDTO>
+<div class="row"><a asp-action="AddTest" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>@General.AddTest</a></div>
+@if (!Model.Any())
+{
+	<div class="row"><h2>@General.NoTests</h2></div>
+}
+@foreach (var test in Model)
+{
+	<div class="row material-design-block">
+		<div class="col-xs-12">
+			<b class="text-success">@test.Name</b>
+			@if (test.Status == Common.TestStatus.NotReadyToPass)
+			{
+				<span class="label label-danger">Не готовий</span>
+			}
+			else
+			{
+				<span class="label label-success">Готовий</span>
+			}
+			@if (test.OpenStatus == Common.OpenTest.Closed)
+			{
+				<span class="label label-warning">Закритий</span>
+			}
+			else
+			{
+				<span class="label label-success">Відкритий</span>
+			}
+			<div style="float:right">
+				<a asp-action="EditTest" asp-route-id="@test.Id" class="btn btn-trans">
+					<i class="glyphicon glyphicon-pencil"></i>
+				</a>
+				<a asp-action="DeleteTest" asp-route-id="@test.Id" class="btn btn-trans">
+					<i class="glyphicon glyphicon-trash"></i>
+				</a>
+				<a asp-action="HistoryForTest" asp-route-id="@test.Id" class="btn btn-trans">
+					<i class="glyphicon glyphicon-stats"></i>
+				</a>
+			</div>
+			<p>
+				<b class="text-muted">@General.Subject: </b> @test.Subject.Name
+			</p>
+			<p>
+				<b class="text-muted">@General.CountOfQuestions: </b> @(test.Questions?.Count ?? 0)
+			</p>
+		</div>
+	</div>
+}

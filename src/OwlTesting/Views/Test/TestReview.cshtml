@@ -1,0 +1,18 @@
+﻿@using Common.Resources
+@using Model.DTO
+@model TestDTO
+
+<div class="row">
+	<div class="col-xs-12">
+		<h4>Назва: <b class="text-muted">@Model.Name</b></h4>
+		<h4>Предмет: <b class="text-muted">@Model.Subject.Name</b> </h4>
+		<h4>Кількість питаннь: <b class="text-muted">@(Model.CountOfQuestions)</b></h4>
+		<h4>Обмеження по часу: <b class="text-muted">@Model.TimeLimit @General.Min</b></h4>
+		<h4>Необхідний мінімум (у відсотках): <b class="text-muted">@Model.Requirment %</b></h4>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<a asp-action="PassTest" asp-route-id="@Model.Id" class="btn btn-success">@General.Pass</a>
+	</div>
+</div>

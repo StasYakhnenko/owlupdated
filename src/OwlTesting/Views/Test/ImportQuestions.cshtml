@@ -1,0 +1,112 @@
+﻿@using Common.Resources
+@using Model.DTO
+@using OwlTesting.ViewModels
+@model QuestionsImportResultDTO
+@Html.ValidationSummary()
+<div class="row">
+	<div class="col-xs-12">
+		<h4>Крок: 2 з 3 (імпорт)</h4>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<h1>@Model.Name</h1>
+		<p>
+			<b class="text-muted">@General.Subject: </b> @Model.SubjectName
+		</p>
+		<p>
+			<b class="text-muted">@General.CountOfQuestions: </b> @(Model.QuestionsCount)
+		</p>
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col-xs-12">
+		<p class="text-danger">Після імпорту питань, всі існуючі питання видаляються!</p>
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col-xs-12">
+		@if (Model.ErrorMessage != null && Model.ErrorMessage.Length > 0)
+		{
+			<h4 class="text-danger">Помилки</h4>
+			@foreach (var error in Model.ErrorMessage)
+			{
+				<span class="text-danger">@error</span>
+				<br />
+			}
+		}
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col-xs-12">
+		<form asp-action="ImportQuestions" class="form-horizontal" method="post" enctype="multipart/form-data">
+			<div class="form-group">
+				<div class="col-sm-1">
+					<input class="btn btn-default btn-sm result-upload" type="file" id="file" name="file" accept=".txt" style="display: inline-block">
+				</div>
+				<div class="col-sm-11"></div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-9">
+					<button type="submit" class="btn btn-success">@General.Send</button>
+					<a asp-action="EditQuestions" asp-route-id="@Model.Id" class="btn btn-primary">@General.BackToEditQuestions</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col-xs-6">
+		<h4>Шаблон файлу</h4>
+		<br />
+		<pre>
+	Текст:
+	[текст питання];
+	Зображення: [посилання на зображення];
+	Рівень: [легкий/середній/важкий];
+	Відповідь: [текст відповіді];
+	Відповідь: [текст відповіді];
+	Відповідь (вірна): [текст відповіді];
+	Відповідь: [текст відповіді];
+	-
+	Текст:
+	[текст питання];
+	Зображення: [посилання на зображення];
+	Рівень: [легкий/середній/важкий];
+	Відповідь: [текст відповіді];
+	Відповідь: [текст відповіді];
+	Відповідь (вірна): [текст відповіді];
+	Відповідь: [текст відповіді];
+	-
+		</pre>
+	</div>
+	<div class="col-xs-6">
+		<h4>Приклад</h4>
+		<br />
+		<pre>
+	Текст:
+	Чому дорівнює 2+2 ?;
+	Зображення:;
+	Рівень:Легкий;
+	Відповідь:3;
+	Відповідь:5;
+	Відповідь (вірна):4;
+	Відповідь:11;
+	-
+	Текст:
+	Знайдіть корінь рівняння  \(x - 5 = 0\) ;
+	Зображення:;
+	Рівень:Легкий;
+	Відповідь (вірна):5;
+	Відповідь:-12;
+	Відповідь:12;
+	Відповідь:-5;
+	-
+		</pre>
+	</div>
+</div>
+

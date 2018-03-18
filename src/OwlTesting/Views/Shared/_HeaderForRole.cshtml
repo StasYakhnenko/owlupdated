@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using OwlTesting.ViewModels
+@using Model.DB	
+@using Common.Resources
+
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+
+	if (User.IsInRole("Administrator"))
+	{
+		<li><a asp-area="" asp-controller="Subject" asp-action="Index">@General.Subjets</a></li>
+		<li><a asp-area="" asp-controller="Test" asp-action="Index">@General.Tests</a></li>
+		<li><a asp-area="" asp-controller="User" asp-action="Index">@General.Users</a></li>
+	} else
+	if (User.IsInRole("Teacher"))
+	{
+		<li><a asp-area="" asp-controller="Test" asp-action="AddTest">@General.AddTest</a></li>
+		<li><a asp-area="" asp-controller="Test" asp-action="TestsForTeacher">@General.EditingTests</a></li>
+		<li><a asp-area="" asp-controller="Test" asp-action="TestsForPass">@General.TestsForPassig</a></li>
+	}
+	else
+	{
+		<li><a asp-area="" asp-controller="Test" asp-action="TestsForPass">@General.AvailableTests</a></li>
+	}
+}
+

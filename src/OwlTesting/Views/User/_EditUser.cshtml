@@ -1,0 +1,136 @@
+﻿@model EditUserViewModel
+@using Common.Resources
+@using OwlTesting.ViewModels
+@Html.ValidationSummary()
+<form asp-action="EditUser" role="form" >
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = General.UserEditing })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+	        <div class="form-group">
+		        <label asp-for="Name" class="col-lg-3 col-sm-3 control-label"></label>
+		        <div class="col-lg-6">
+			        <input asp-for="Name" class="form-control" required/>
+		        </div>
+	        </div>
+			@if (Model.ApplicationRoleId == "3")
+			{
+				<div class="form-group">
+					<label asp-for="PasswordForShow" class="col-lg-3 col-sm-3 control-label"></label>
+					<div class="col-lg-6">
+						<input asp-for="PasswordForShow" class="form-control password-new" required/>
+					</div>
+					<button type="button" class="btn btn-success btn-sm btn-generate-new">@General.GenerateNew</button>
+				</div>
+				<input type="hidden" asp-for="OldPassword"/>
+			}
+			
+            <div class="form-group">
+                <label asp-for="Email" class="col-lg-3 col-sm-3 control-label"></label>
+                <div class="col-lg-6">
+                    <input asp-for="Email" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="col-lg-3 col-sm-3 control-label"></label>
+                <div class="col-lg-6">
+                    <input asp-for="FirstName" class="form-control" required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="col-lg-3 col-sm-3 control-label"></label>
+                <div class="col-lg-6">
+                    <input asp-for="LastName" class="form-control"required />
+                </div>
+            </div>
+			<div class="form-group">
+				<label asp-for="ApplicationRoleId" class="col-lg-3 col-sm-3 control-label"></label>
+				<div class="col-lg-6">
+					<select asp-for="ApplicationRoleId" asp-items="@Model.ApplicationRoles" class="form-control select-role" required>
+						<option>@General.PleaseSelect</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group student-form-group">
+				<div class="col-lg-3"></div>
+				<div class="col-lg-9">
+					<small class="text-muted">Поля для студента</small>
+				</div>
+			</div>
+            <div class="form-group student-form-group">
+                <label asp-for="Group" class="col-lg-3 col-sm-3 control-label"></label>
+                <div class="col-lg-6">
+                    <input asp-for="Group" class="form-control"required />
+                </div>
+            </div>
+			<div class="form-group student-form-group">
+				<label asp-for="StudentId" class="col-lg-3 col-sm-3 control-label"></label>
+				<div class="col-lg-6">
+					<input asp-for="StudentId" class="form-control" required />
+				</div>
+			</div>
+			<div class="form-group student-form-group">
+				<label asp-for="StudyStartDate" class="col-lg-3 col-sm-3 control-label"></label>
+				<div class="col-lg-6">
+					<input asp-for="StudyStartDate" class="form-control" type="date" required />
+				</div>
+			</div>
+			<div class="form-group student-form-group">
+				<label asp-for="StudyEndDate" class="col-lg-3 col-sm-3 control-label"></label>
+				<div class="col-lg-6">
+					<input asp-for="StudyEndDate" class="form-control" type="date" required />
+				</div>
+			</div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { })
+</form>
+
+
+<script>
+	function setEventForGenerating() {
+		$(".btn-generate-new").click(function() {
+			$(".password-new").val(guid());
+		});
+	}
+
+	function guid() {
+		function s4() {
+			return Math.floor((1 + Math.random()) * 0x10000)
+				.toString(16)
+				.substring(1);
+		}
+
+		return s4() + '-' + s4() + '-' + s4();
+	}
+	function ShowOrHideStudentBlocks(selectElement) {
+		var selectValue = $(selectElement).val();
+		if (selectValue === "3") {
+			$(".student-form-group").show();
+		}
+		else {
+			$(".student-form-group").hide();
+		}
+	}
+	function SetEventForSelectRole() {
+		$(".select-role").change(function () {
+			ShowOrHideStudentBlocks($(this));
+		});
+	}
+	$(document).ready(function () {
+		setEventForGenerating();
+		ShowOrHideStudentBlocks($(".select-role"));
+		SetEventForSelectRole();
+	});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

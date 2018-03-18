@@ -1,0 +1,134 @@
+﻿@using Common.Resources
+@using Model.DTO
+@model TestDTO
+@Html.ValidationSummary()
+<div class="row">
+	<div class="col-xs-12">
+		<h4>Крок: 3 з 3</h4>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<form asp-action="EditComplexity" class="form-horizontal" method="post" onsubmit="configureForm();">
+			<input type="hidden" asp-for="Id" />
+			<div class="col-sm-3"></div>
+			<div class="col-sm-9">
+				<h2>Редагування складності тесту</h2>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">Кількість питаннь</label>
+				<div class="col-sm-9">
+					<input asp-for="CountOfQuestions" class="form-control count-input" required placeholder="20" />
+					<small class="text-muted">Всього додано питань в базу: @Model.Questions?.Count</small>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">Кількість легких питаннь:</label>
+				<div class="col-sm-9">
+					<input asp-for="CountOfEasy" class="form-control easy-input" required placeholder="5" />
+					<small class="text-muted">Всього додано легких питань в базу: @Model.Questions.Where(x => x.Level == Common.ComplexityLevel.Easy).ToList().Count </small>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">Кількість середніх по важкості питаннь:</label>
+				<div class="col-sm-9">
+					<input asp-for="CountOfMedium" class="form-control medium-input" required placeholder="10" />
+					<small class="text-muted">Всього додано середніх питань в базу: @Model.Questions.Where(x => x.Level == Common.ComplexityLevel.Medium).ToList().Count </small>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">Кількість важких питаннь:</label>
+				<div class="col-sm-9">
+					<input asp-for="CountOfHard" class="form-control hard-input" required placeholder="5" />
+					<small class="text-muted">Всього додано важких питань в базу: @Model.Questions.Where(x => x.Level == Common.ComplexityLevel.Hard).ToList().Count </small>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3"></label>
+				<div class="col-sm-9">
+					<small class="text-muted">Примітка: сума легких, середніх та важких питаннь має дорівнювати кількості питань</small>
+					<br />
+					<small class="text-muted">Кількість легких,середніх та важких питаннь має не перебільшувати кількість доданих в базу питань відповідного рівня</small>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button type="submit" class="btn btn-success">@General.Send</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<br />
+<br />
+<div class="row">
+	<div class="col-xs-12">
+	Шкала питань по важкості
+	</div>
+	<div class="col-xs-12">
+		<div class="progress" style="padding:0;">
+			<div class="progress-bar progress-bar-success progress-easy" role="progressbar" style="width:0%">
+				Легкі
+			</div>
+			<div class="progress-bar progress-bar-warning progress-medium" role="progressbar" style="width:0%">
+				Середні
+			</div>
+			<div class="progress-bar progress-bar-danger progress-hard" role="progressbar" style="width:0%">
+				Важкі
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	function updateMeasure() {
+		var countSum = parseInt($(".count-input:first").val());
+		
+		var countOfEasy = parseInt($(".easy-input:first").val());
+		var countOfMedium = parseInt($(".medium-input:first").val());
+		var countOfHard = parseInt($(".hard-input:first").val());
+
+		$(".progress-easy").width((countOfEasy / countSum * 100).toString() + '%');
+		$(".progress-medium").width((countOfMedium / countSum * 100).toString() + '%');
+		$(".progress-hard").width((countOfHard / countSum * 100).toString() + '%');
+	}
+
+	function initEventsForMeasure() {
+		$(".easy-input:first").change(function () {
+			updateMeasure();
+		}).keydown(function () {
+			updateMeasure();
+			}).keyup(function () {
+				updateMeasure();
+			});
+
+		$(".medium-input:first").change(function () {
+			updateMeasure();
+		}).keypress(function () {
+			updateMeasure();
+			}).keyup(function () {
+				updateMeasure();
+			});
+
+		$(".hard-input:first").change(function () {
+			updateMeasure();
+		}).keypress(function () {
+			updateMeasure();
+			}).keyup(function () {
+				updateMeasure();
+			});
+
+		$(".count-input:first").change(function () {
+			updateMeasure();
+		}).keypress(function () {
+			updateMeasure();
+		}).keyup(function () {
+			updateMeasure();
+		});
+	}
+
+	updateMeasure();
+	initEventsForMeasure();
+</script>
+

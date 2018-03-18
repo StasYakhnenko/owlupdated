@@ -1,0 +1,95 @@
+﻿@using Common.Resources
+@using Common
+@using Common.Helpers
+@using Model.DTO
+@model TestResultShowDTO
+@{
+	Layout = null;
+	var i = 0;
+	var isAcceptable = Model.TestResult.ResultGrade >= (Model.TestResult.Test.Requirment / 100) * Model.TestResult.Test.Grade;
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-2">
+			<img class="img-responsive" src="https://i.imgur.com/2pYtpj4.jpg" />
+		</div>
+		<div class="col-xs-10">
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<h5>@General.Id: <b>@Model.TestResult.Id</b></h5>
+			<h5>@General.Test: <b>@Model.TestResult.Test.Name</b> </h5>
+			<h5>@General.User: <b>@Model.TestResult.User.FullName</b></h5>
+			<h5>@General.Grade: <b>@Model.TestResult.ResultGrade @General.With @Model.TestResult.Test.Grade</b></h5>
+			@if (isAcceptable)
+			{
+				<h5>@General.Status: <b>@General.PassedTest</b></h5>
+			}
+			else
+			{
+				<h5>@General.Status: <b>@General.UnpassedTest</b></h5>
+			}
+		</div>
+		<div class="col-xs-12 no-print">
+			<br />
+			<button class="btn btn-primary btn-sm" onclick="window.print();">@General.Print <i class="glyphicon glyphicon-print"></i></button>
+			<br />
+		</div>
+	</div>
+	<br />
+	<div class="row">
+		<div class="col-xs-12">
+			@foreach (var question in Model.TestResult.Questions)
+			{
+				i++;
+				var answersRight = question.Question.Answers.Where(x => x.IsCorrect).Select(x => x.Text).ToList();
+				var givenAnswers = question.Answers.Select(x => x.Answer.Text).ToList();
+				var cssClassForQuestion = question.Status == Common.StatusQuestion.Wrong ? "wrong-answer-block" : (question.Status == Common.StatusQuestion.PartialRight ? "partial-right-answer-block" : "right-answer-block");
+				<div class="row @cssClassForQuestion" style="font-size:14px">
+					@*<div class="col-xs-0">
+						@if (!string.IsNullOrEmpty(question.Question.ImageLink))
+						{
+							<img src="@question.Question.ImageLink" class="img-responsive img-thumbnail" alt="" style="max-height:75px;" />
+						}
+					</div>*@
+					<div class="col-xs-12">
+						<b>
+							<span title="@question.Question.Text" style="text-overflow: ellipsis; max-width:90%; white-space: nowrap; display:inline-block; overflow:hidden !important;">
+								#@(i)
+								@question.Question.Text
+							</span>
+						</b>
+						<p class="text-muted">
+							@General.RightAnswer:
+							@foreach (var answer in answersRight)
+							{
+								<b>@answer </b>
+								<br />
+							}
+						</p>
+						@if (question.Status == Common.StatusQuestion.PartialRight || question.Status == Common.StatusQuestion.Wrong)
+						{
+							<p class="text-muted">
+								@General.GivenAnswer:
+								@foreach (var answer in givenAnswers)
+								{
+									<b>@answer </b>
+									<br />
+								}
+							</p>
+						}
+					</div>
+				</div>
+				<hr />
+			}
+		</div>
+	</div>
+</div>
+
+<script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>

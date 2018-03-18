@@ -1,0 +1,156 @@
+﻿@using Common.Resources
+@using Common
+@using Model.DTO
+@model TestDTO
+@Html.ValidationSummary()
+<div class="row">
+	<div class="col-xs-12">
+		<h4>Крок: 1 з 3</h4>
+	</div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+
+        <form asp-action="EditTest" class="form-horizontal" method="post" onsubmit="configureForm();">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-9">
+                <h2>Редагування тесту</h2>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Назва:</label>
+                <div class="col-sm-9">
+                    <input asp-for="Name" class="form-control" required placeholder="@General.NamePlaceholder" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Оцінка:</label>
+                <div class="col-sm-9">
+                    <input asp-for="Grade" class="form-control" required placeholder="@General.GradePlaceholder"  min="1"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Задовільний рівень проходження (у відсотках)</label>
+                <div class="col-sm-9">
+                    <input asp-for="Requirment" class="form-control" required placeholder="50%"  max="100" type="number" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Дата та час відкриття тесту:</label>
+                <div class="col-sm-9">
+                    <input asp-for="StartDate" type="datetime-local" class="form-control date-open" placeholder="@General.DateTestPlaceholder" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Дата та час закриття тесту:</label>
+                <div class="col-sm-9">
+                    <input asp-for="EndDate" type="datetime-local" class="form-control date-close" placeholder="@General.DateTestPlaceholder" />
+                    <small class="text-muted">@General.DateTestPlaceholder</small>
+                </div>
+            </div>
+			<div class="form-group">
+				<label class="control-label col-sm-3"></label>
+				<div class="col-sm-9">
+					<small class="text-muted">
+						Відкрити тест на <input type="number" class="form-control minutes-input" value="30"/> хвилин
+					</small>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-9">
+					<button type="button" class="btn btn-success btn-sm btn-set-time"><i class="glyphicon glyphicon-time"></i> @General.SetTime</button>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-9 col-sm-offset-3">
+					<div class="checkbox">
+						<label><input asp-for="ConsiderPartialAnswers" /> @General.IncludePartlyAnswers</label>
+					</div>
+				</div>
+			</div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Обмеження по часу (у хвилинах)</label>
+                <div class="col-sm-9">
+                    <input asp-for="TimeLimit" class="form-control" placeholder="20" min="1" />
+                </div>
+            </div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">Доступність:</label>
+				<div class="col-sm-9">
+					<select asp-for="OpenStatus" class="selectpicker form-control" asp-items="@(Html.GetEnumSelectList<OpenTest>())"></select>
+				</div>
+			</div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">Предмет:</label>
+                <div class="col-sm-9">
+                    <select asp-for="SubjectId" class="selectpicker form-control" id="subjects-select">
+                        @foreach (var subject in Model.Subjects)
+                        {
+                            <option value="@subject.Id">@subject.Name</option>
+                        }
+                    </select>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Надання доступу викладачам:</label>
+                <div class="col-sm-9">
+                    <select class="form-control selectpicker" id="teachers-select" multiple>
+                        @foreach (var teacher in Model.TeachersAll)
+                        {
+                            <option value="@teacher.Id">@teacher.FullName</option>
+                        }
+                    </select>
+                    
+                    <input type="hidden" asp-for="TeachersJSON" id="teachersJsonHidden"value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-success">@General.Next</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script>
+    function ready() {
+        $('.selectpicker').each(function () {
+            $(this).selectpicker({
+                style: 'btn- default',
+                size: 4,
+                width:'fit'
+            });
+        });
+
+        $('#teachers-select').selectpicker('val', @Json.Serialize(Model.Teachers.Select(x => x.Id).ToArray()));
+        $('#teachers-select').change();
+        $('#teachers-select').selectpicker('refresh');
+    }
+
+    function configureForm() {
+        $("#teachersJsonHidden").val(JSON.stringify($("#teachers-select").val()));
+        console.log($("#teachersJsonHidden").val());
+    }
+	document.addEventListener("DOMContentLoaded", ready);
+	Date.prototype.toDateInputValue = (function () {
+		var local = new Date(this);
+		local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+		return local.toJSON();
+	});
+	$(".btn-set-time").click(function () {
+		var minutes = parseInt($(".minutes-input").val());
+		if (minutes > 0) {
+			var openDate = new Date();
+			openDate.setTime(openDate.getTime() + 2 * 60 * 60 * 1000);
+			var closeDate = new Date();
+			closeDate.setTime(closeDate.getTime() + minutes * 60 * 1000 + 2 * 60 * 60 * 1000);
+
+			$(".date-open").val(openDate.toJSON().slice(0, 16));
+			$(".date-close").val(closeDate.toJSON().slice(0, 16));
+		}
+	});
+</script>

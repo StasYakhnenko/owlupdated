@@ -1,0 +1,27 @@
+﻿@using Common.Resources
+@using Model.DTO
+@using OwlTesting.ViewModels
+@model int
+
+<div class="row">
+    <div class="answer-unit" style="margin:25px;">
+		<input type="hidden" name="Answers[@(Model-1)].IsDeleted" value="False" />
+        <b>@General.Answer № @Model</b>
+        <button class="btn btn-xs btn-trans" style="float:right;" type="button" onclick="deleteAnswer(this);"><i class="glyphicon glyphicon-remove"></i></button>
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="col-lg-3 col-sm-3 control-label">@General.Text : </label>
+                <input type="text" required name="Answers[@(Model-1)].Text" class="form-control">
+            </div>
+            @*<div class="form-group">
+                <label class="col-lg-3 col-sm-3 control-label">@General.ImageLink </label>
+                <input type="text" name="Answers[@(Model-1)].ImageLink" class="form-control">
+            </div>*@
+            <div class="checkbox">
+                <label><input type="checkbox" value="True" name="Answers[@(Model-1)].IsCorrect"> @General.CorrectAnswer</label>
+            </div>
+        </div>
+        <hr />
+    </div>
+</div>
+

@@ -1,0 +1,27 @@
+﻿@using Common.Resources
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="top-buffer"></div>
+        <div class="panel panel-danger">
+            <div class="panel-heading">@General.AccessDenied</div>
+            <div class="panel-body">
+                <section>
+                    <h1 class="text-danger">@General.AccessDeniedInformation</h1>
+                    <br />
+                    <a href="javascript:void(0)" onClick="backAway()" class="btn btn-success">@General.Back</a>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+@section scripts
+{
+    <script>
+        function backAway() {
+			history.back();
+        }
+    </script>
+}

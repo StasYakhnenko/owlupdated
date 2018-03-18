@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Немає доступу</value>
+  </data>
+  <data name="AccessDeniedInformation" xml:space="preserve">
+    <value>401 ! На жаль, у вас немає прав переглядати цю сторінку</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Дії</value>
+  </data>
+  <data name="AddAnswer" xml:space="preserve">
+    <value>Додати відповідь</value>
+  </data>
+  <data name="AddQuestion" xml:space="preserve">
+    <value>Додати питання</value>
+  </data>
+  <data name="AddTest" xml:space="preserve">
+    <value>Додати тест</value>
+  </data>
+  <data name="AddUser" xml:space="preserve">
+    <value>Додавання користувача</value>
+  </data>
+  <data name="Answer" xml:space="preserve">
+    <value>Відповідь</value>
+  </data>
+  <data name="Answers" xml:space="preserve">
+    <value>Відповіді</value>
+  </data>
+  <data name="AnswersAndNumbers" xml:space="preserve">
+    <value>Відсоток вірних відповідей / номер питання</value>
+  </data>
+  <data name="AvailableTests" xml:space="preserve">
+    <value>Доступні тести</value>
+  </data>
+  <data name="AverageGrade" xml:space="preserve">
+    <value>Середній бал</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="BackToEditingBasicInformation" xml:space="preserve">
+    <value>Назад до редагування базової інформації</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Назад до списку</value>
+  </data>
+  <data name="CorrectAnswer" xml:space="preserve">
+    <value>Правильна відповідь</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>Кількість</value>
+  </data>
+  <data name="CountOfAnswers" xml:space="preserve">
+    <value>Кількість відповідей</value>
+  </data>
+  <data name="CountOfPassings" xml:space="preserve">
+    <value>Всього проходженнь</value>
+  </data>
+  <data name="CountOfQuestions" xml:space="preserve">
+    <value>Кількість питаннь</value>
+  </data>
+  <data name="CountOfResults" xml:space="preserve">
+    <value>Кількість результатів</value>
+  </data>
+  <data name="CountOfSuccessfulResults" xml:space="preserve">
+    <value>Кількість задовільних результатів</value>
+  </data>
+  <data name="DateTestPlaceholder" xml:space="preserve">
+    <value>лишіть поле пустим, щоб тест був завжди доступний</value>
+  </data>
+  <data name="DeleteConfirmation" xml:space="preserve">
+    <value>Ви точно хочете видалити</value>
+  </data>
+  <data name="DeleteQuestionConfirmation" xml:space="preserve">
+    <value>Ви точно хочете видалити питання</value>
+  </data>
+  <data name="EasiestQuestion" xml:space="preserve">
+    <value>Найлегше питання</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редагувати</value>
+  </data>
+  <data name="EditingTests" xml:space="preserve">
+    <value>Редагування тестів</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Електрона пошта</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Помилка</value>
+  </data>
+  <data name="FinalSoon" xml:space="preserve">
+    <value>Скоро завершення</value>
+  </data>
+  <data name="FLM" xml:space="preserve">
+    <value>ПІБ</value>
+  </data>
+  <data name="FooterText" xml:space="preserve">
+    <value>&amp;copy; 2017 - OwlTesting</value>
+  </data>
+  <data name="Grade" xml:space="preserve">
+    <value>Оцінка</value>
+  </data>
+  <data name="GradePlaceholder" xml:space="preserve">
+    <value>Введіть оцінку за тест</value>
+  </data>
+  <data name="GradesAndTests" xml:space="preserve">
+    <value>Бали / кількість тестів</value>
+  </data>
+  <data name="HarderstQuestion" xml:space="preserve">
+    <value>Найважче питання</value>
+  </data>
+  <data name="HistoryOfPassings" xml:space="preserve">
+    <value>Історія проходженнь</value>
+  </data>
+  <data name="ImageLink" xml:space="preserve">
+    <value>Посиланна на зображення</value>
+  </data>
+  <data name="IncludePartlyAnswers" xml:space="preserve">
+    <value>Враховувати часткові відповіді</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Увійти</value>
+  </data>
+  <data name="Logoff" xml:space="preserve">
+    <value>Вийти</value>
+  </data>
+  <data name="MaxGrade" xml:space="preserve">
+    <value>Максимально можливий результат тесту</value>
+  </data>
+  <data name="MinRequirment" xml:space="preserve">
+    <value>Мінімальна вимога (у відсотках)</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Назва</value>
+  </data>
+  <data name="NamePlaceholder" xml:space="preserve">
+    <value>Введіть назву</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Далі</value>
+  </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>Нікнейм</value>
+  </data>
+  <data name="OWLTesting" xml:space="preserve">
+    <value>OWL Testing</value>
+  </data>
+  <data name="Passed" xml:space="preserve">
+    <value>Пройдені</value>
+  </data>
+  <data name="PassedAndUnpassedTests" xml:space="preserve">
+    <value>Пройдені / непройдені тести</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>Оберіть будь ласка</value>
+  </data>
+  <data name="PreviewQuestion" xml:space="preserve">
+    <value>Попередній перегляд</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Питання</value>
+  </data>
+  <data name="QuestionAdding" xml:space="preserve">
+    <value>Додавання питання</value>
+  </data>
+  <data name="QuestionEditing" xml:space="preserve">
+    <value>Редагування питання</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
+  <data name="RightAnswers" xml:space="preserve">
+    <value>Вірні відповіді</value>
+  </data>
+  <data name="ShowDetails" xml:space="preserve">
+    <value>Переглянути деталі</value>
+  </data>
+  <data name="SomethingHasHappened" xml:space="preserve">
+    <value>Щось сталось під час обробки вашого запиту :(</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Cтатус</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Предмет</value>
+  </data>
+  <data name="SubjectAdd" xml:space="preserve">
+    <value>Додати предмет</value>
+  </data>
+  <data name="SubjectAdding" xml:space="preserve">
+    <value>Додавання предмету</value>
+  </data>
+  <data name="SubjectEditing" xml:space="preserve">
+    <value>Редагування предмету</value>
+  </data>
+  <data name="SubjectRemoving" xml:space="preserve">
+    <value>Видалення предмету</value>
+  </data>
+  <data name="Subjets" xml:space="preserve">
+    <value>Предмети</value>
+  </data>
+  <data name="TestEditing" xml:space="preserve">
+    <value>Редагування тесту</value>
+  </data>
+  <data name="Tests" xml:space="preserve">
+    <value>Тести</value>
+  </data>
+  <data name="TestsForPassig" xml:space="preserve">
+    <value>Тести для проходження</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Текст</value>
+  </data>
+  <data name="TimeFinish" xml:space="preserve">
+    <value>Час завершення</value>
+  </data>
+  <data name="TimeStart" xml:space="preserve">
+    <value>Час початку</value>
+  </data>
+  <data name="Unpassed" xml:space="preserve">
+    <value>Не пройдені</value>
+  </data>
+  <data name="UserEditing" xml:space="preserve">
+    <value>Редагування користувача</value>
+  </data>
+  <data name="UserRemoving" xml:space="preserve">
+    <value>Видалення користувача</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Користувачі</value>
+  </data>
+  <data name="AllPassedTests" xml:space="preserve">
+    <value>Всього пройдених тестів</value>
+  </data>
+  <data name="BestSubject" xml:space="preserve">
+    <value>Предмет найкращої успішності</value>
+  </data>
+  <data name="BestTest" xml:space="preserve">
+    <value>Найкращий тест</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Завершити</value>
+  </data>
+  <data name="FinishSoon" xml:space="preserve">
+    <value>Скоро завершення</value>
+  </data>
+  <data name="GiveAnswer" xml:space="preserve">
+    <value>Відповісти</value>
+  </data>
+  <data name="GivenAnswer" xml:space="preserve">
+    <value>Дана відповідь</value>
+  </data>
+  <data name="Min" xml:space="preserve">
+    <value>хв</value>
+  </data>
+  <data name="NoQuestions" xml:space="preserve">
+    <value>На жаль, у даному тесті ще немає питаннь :(</value>
+  </data>
+  <data name="NoTests" xml:space="preserve">
+    <value>На жаль, ви немаєте доступних тестів</value>
+  </data>
+  <data name="NotPassedTest" xml:space="preserve">
+    <value>На жаль, даний тест ще ні разу не проходили :(</value>
+  </data>
+  <data name="NotRightAnswers" xml:space="preserve">
+    <value>Не вірні відповіді</value>
+  </data>
+  <data name="Pass" xml:space="preserve">
+    <value>Пройти</value>
+  </data>
+  <data name="PassedTest" xml:space="preserve">
+    <value>Пройдений</value>
+  </data>
+  <data name="PassTest" xml:space="preserve">
+    <value>Пройти тест</value>
+  </data>
+  <data name="PercantageOfCorrect" xml:space="preserve">
+    <value>Відсоток вірних</value>
+  </data>
+  <data name="RightAnswer" xml:space="preserve">
+    <value>Вірна відповідь</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Тест</value>
+  </data>
+  <data name="UnpassedTest" xml:space="preserve">
+    <value>Не пройдений</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Користувач</value>
+  </data>
+  <data name="With" xml:space="preserve">
+    <value>з</value>
+  </data>
+  <data name="WorstSubject" xml:space="preserve">
+    <value>Предмет найгіршої успішності</value>
+  </data>
+  <data name="WorstTest" xml:space="preserve">
+    <value>Найгірший тест</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="GenerateNew" xml:space="preserve">
+    <value>Згенерувати новий</value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>макс.</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Роздрукувати</value>
+  </data>
+  <data name="Easy" xml:space="preserve">
+    <value>Легкий</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Завершений</value>
+  </data>
+  <data name="Hard" xml:space="preserve">
+    <value>Складний</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Середній</value>
+  </data>
+  <data name="NotFinished" xml:space="preserve">
+    <value>Не завершений</value>
+  </data>
+  <data name="GoToEditComplexity" xml:space="preserve">
+    <value>Далі до редагування важкості</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Надіслати</value>
+  </data>
+  <data name="BackToEditQuestions" xml:space="preserve">
+    <value>Назад до редагування питань</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Роль</value>
+  </data>
+  <data name="ImportQuestions" xml:space="preserve">
+    <value>Імпортувати питання</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Повне ім'я</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Група</value>
+  </data>
+  <data name="LoginName" xml:space="preserve">
+    <value>Логін</value>
+  </data>
+  <data name="OpenTests" xml:space="preserve">
+    <value>Відкриті тести</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="PleaseComeBackToTests" xml:space="preserve">
+    <value>Будь ласка поверніться до тестів для проходження</value>
+  </data>
+  <data name="SetTime" xml:space="preserve">
+    <value>Виставити час</value>
+  </data>
+  <data name="StudentId" xml:space="preserve">
+    <value>Номер в зал. книжці</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Закритий</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>ВІдкритий</value>
+  </data>
+</root>

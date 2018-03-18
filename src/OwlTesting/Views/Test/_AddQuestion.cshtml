@@ -1,0 +1,72 @@
+﻿@using Common.Resources
+@using Model.DTO
+@using Common
+@using OwlTesting.ViewModels
+@model QuestionDTO
+
+<b class="text-danger">
+	@Html.ValidationSummary()
+</b>
+	
+<form asp-action="AddQuestion" role="form" method="post">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Додавання питання" })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+	        <div class="form-group">
+		        <input type="hidden" asp-for="TestId" />
+		        <label asp-for="Text" class="col-lg-3 col-sm-3 control-label">Текст питання: </label>
+		        <div class="col-lg-6">
+			        <textarea asp-for="Text" required class="form-control" rows="10"></textarea>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label asp-for="Level" class="col-lg-3 col-sm-3 control-label">Рівень важкості: </label>
+		        <div class="col-lg-6">
+			        <select class="form-control" required asp-for="Level" asp-items="@(Html.GetEnumSelectList<ComplexityLevel>())"></select>
+		        </div>
+	        </div>
+            <div class="form-group">
+                <label asp-for="ImageLink" class="col-lg-3 col-sm-3 control-label">Посилання на зображення: </label>
+                <div class="col-lg-6">
+                    <input asp-for="ImageLink" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <b>@General.Answers: </b>
+            <br />
+            <a class="btn btn-success" onclick="addAnswer();"><i class="glyphicon glyphicon-plus"></i> @General.AddAnswer</a>
+        </div>
+            <div id="answer-container">
+
+            </div>
+
+        </div>
+        @await Html.PartialAsync("_ModalFooter", new ModalFooter { })
+</form>
+
+<script>
+    function addAnswer() {
+        var answerPlace = $("#answer-container");
+        var count = $(".answer-unit").length;
+        $.ajax({
+            url: '@Url.Action("GetAnswerTemplate")',
+            data:{count: ++count},
+            type: 'POST',
+            success: function (data) {
+                var unit = $(data);
+                answerPlace.append(unit);
+            }
+        });
+    }
+
+    function deleteAnswer(btnElement) {
+        if (confirm("@General.DeleteQuestionConfirmation")) {
+            var $answerUnit = $(btnElement).closest('.answer-unit');
+            $answerUnit.fadeOut(300, function () {
+                $answerUnit.find(".is-deleted").val('True');
+                $answerUnit.hide();
+            });
+        }
+    }
+</script>

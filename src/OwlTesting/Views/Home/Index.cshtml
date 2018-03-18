@@ -1,0 +1,58 @@
+﻿@using Model.DTO
+@using Common.Resources
+@model HomePageDTO
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="jumbotron home-main-panel">
+	<div class="text">
+		Learn & Test
+	</div>
+</div>
+<br />
+@if (Model.OpenTests != null && Model.OpenTests.Count > 0)
+{
+	<div class="row">
+		<h2>@General.OpenTests</h2>
+		<h4 class="text-muted">@General.PleaseComeBackToTests</h4>
+	</div>
+	<div class="row">
+		@foreach (var test in Model.OpenTests)
+		{
+			<div class="col-xs-12">
+				<a href="@Url.Action("PassTestQuestion","Test", new { @id = test.Id})">
+					@test.Test.Name
+					<span class="label label-primary">@test.Test.Subject.Name</span>
+					<span class="label label-danger">Завершення через @( (int)(test.TimeStart.AddMinutes(test.Test.TimeLimit) - DateTime.Now).TotalMinutes  ) хвилин</span>
+				</a>
+			</div>
+		}
+	</div>
+
+	<br />
+}
+<div class="row">
+	<h2>@General.AvailableTests</h2>
+</div>
+<div class="row">
+	@foreach (var subject in Model.Subjects)
+	{
+		<div class="col-sm-3 col-xs-12">
+			<h3>@subject.Name</h3>
+			@foreach (var test in subject.Tests)
+			{
+				var toShowLabel = test.EndDate.HasValue && (test.EndDate - DateTime.Now).Value.Days < 7;
+				<p>
+					<span><a asp-action="TestReview" asp-controller="Test" asp-route-id="@test.Id" class="text-muted">• @test.Name</a></span>
+					@if (toShowLabel)
+					{
+						<span class="label label-danger">@General.FinalSoon</span>
+					}
+				</p>
+			}
+		</div>
+	}
+</div>
+

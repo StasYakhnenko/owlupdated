@@ -1,0 +1,51 @@
+﻿@model IEnumerable<UserListViewModel>
+@using Common.Resources
+@using OwlTesting.ViewModels
+
+<div class="top-buffer"></div>
+        <div class="btn-group">
+            <a id="createEditUserModal" data-toggle="modal" asp-action="AddUser" data-target="#modal-action-user" class="btn btn-success">
+                <i class="glyphicon glyphicon-plus"></i>  @General.AddUser
+            </a>
+			<a class="btn btn-primary" asp-action="Students"><i class="glyphicon glyphicon-print"></i> Студенти (друк)</a>
+        </div>
+        <div class="top-buffer"></div>
+        <table class="table table-bordered table-striped">
+            <thead>
+				<tr>
+					<th>@General.Nickname</th>
+					<th>@General.Email</th>
+					<th>@General.FLM</th>
+					<th>@General.Role</th>
+					<th>@General.Actions</th>
+				</tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+				{
+					<tr>
+						<td>@item.Name</td>
+						<td>@item.Email</td>
+						<td>@item.FullName</td>
+						<td>@item.RoleName</td>
+						<td>
+							<a id="editUserModal" data-toggle="modal" asp-action="EditUser" asp-route-id="@item.Id" data-target="#modal-action-user"
+							   class="btn btn-primary">
+								<i class="glyphicon glyphicon-pencil"></i>  @General.Edit
+							</a>
+							<a id="deleteUserModal" data-toggle="modal" asp-action="DeleteUser" asp-route-id="@item.Id" data-target="#modal-action-user" class="btn btn-danger">
+								<i class="glyphicon glyphicon-trash"></i>  @General.Remove
+							</a>
+						</td>
+					</tr>
+				}
+            </tbody>
+        </table>
+
+
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action-user", AreaLabeledId = "modal-action-user-label", Size = ModalSize.Medium })
+
+@section scripts
+{
+    <script src="~/js/user-index.js" asp-append-version="true"></script>
+}
